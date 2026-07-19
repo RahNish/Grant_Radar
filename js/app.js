@@ -39,7 +39,6 @@ async function initialize() {
         populateAgencyFilter();
         populateCategoryFilter();
 
-        renderFeatured();
         renderGrants();
 
         document
