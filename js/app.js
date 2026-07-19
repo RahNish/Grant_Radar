@@ -28,6 +28,8 @@ async function initialize() {
 
         allGrants = response.data;
 
+        console.log("Grants:", allGrants);
+
         // Sort grants by nearest deadline
         allGrants.sort((a, b) => {
             return new Date(a.deadline) - new Date(b.deadline);
@@ -35,10 +37,21 @@ async function initialize() {
 
         filteredGrants = [...allGrants];
 
+
         loadStatistics();
+
+        // const visitorResponse = await API.getVisitors();
+
+        // if (visitorResponse.success) {
+        //     document.getElementById("visitorCount").textContent =
+        //         visitorResponse.data;
+        // }
+
         populateAgencyFilter();
         populateCategoryFilter();
 
+
+        console.log("About to render...");
         renderGrants();
 
         document
@@ -61,6 +74,8 @@ async function initialize() {
     showLoading(false);
 
     attachEvents();
+
+    loadVisitorCount();
 
 }
 
@@ -329,9 +344,9 @@ function createGrantCard(grant, featured = false) {
 
 <i class="bi bi-bank"></i>
 
-${grant.agency}
 
-// ${featured ? '<span class="badge bg-warning text-dark ms-2">Featured</span>' : ''}
+
+${grant.agency}
 
 ${grant.featured === "Yes"
     ? '<span class="badge bg-warning text-dark ms-2"><i class="bi bi-star-fill"></i> Featured</span>'
@@ -453,5 +468,44 @@ function formatDate(date){
             year:"numeric"
         }
     );
+
+}
+
+async function loadVisitorCount() {
+
+    try {
+
+        const today = new Date().toISOString().split("T")[0];
+
+        const lastVisit = localStorage.getItem("grantRadarVisit");
+
+        let response;
+
+        if (lastVisit === today) {
+
+            // Already counted today
+            response = await API.getVisitorCount();
+
+        } else {
+
+            // First visit today
+            response = await API.getVisitors();
+
+            localStorage.setItem("grantRadarVisit", today);
+
+        }
+
+        if (response.success) {
+
+            document.getElementById("visitorCount").textContent =
+                response.data;
+
+        }
+
+    } catch (error) {
+
+        console.error("Visitor Counter:", error);
+
+    }
 
 }

@@ -95,6 +95,14 @@ class GrantRadarAPI {
         return this.get("stats");
     }
 
+    getVisitors() {
+        return this.get("visitors");
+    }
+
+    getVisitorCount() {
+        return this.get("visitorCount");
+    }
+
     ping() {
         return this.get("ping");
     }
