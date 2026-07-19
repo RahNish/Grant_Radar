@@ -1,0 +1,420 @@
+/* =====================================================
+   GRANT RADAR
+   STYLE.CSS
+===================================================== */
+
+:root{
+
+    --primary:#0d6efd;
+    --secondary:#198754;
+    --warning:#ffc107;
+    --danger:#dc3545;
+
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#212529;
+    --muted:#6c757d;
+
+    --radius:14px;
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+/* =======================
+NAVBAR
+======================= */
+
+.navbar{
+
+    background:#0b3d91;
+
+    padding:8px 0;
+
+}
+
+.navbar-brand{
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+}
+
+.nav-link{
+
+    color:white !important;
+
+    margin-left:10px;
+
+    font-size:14px;
+
+}
+
+.nav-link:hover{
+
+    color:#ffd54f !important;
+
+}
+
+/* =======================
+HERO
+======================= */
+
+.hero{
+
+    background:linear-gradient(135deg,#0d6efd,#3b82f6);
+
+    color:white;
+
+    padding:35px 0;
+
+}
+
+.hero h1{
+
+    font-weight:700;
+
+    font-size:2.2rem;
+
+    margin-bottom:8px;
+
+}
+
+.hero h4{
+
+    margin-top:5px;
+
+    font-size:1.1rem;
+
+    font-weight:500;
+
+}
+
+.hero p{
+
+    margin-top:8px;
+
+    font-size:15px;
+
+}
+
+/* =======================
+SEARCH
+======================= */
+
+.search-section{
+
+    margin-top:-35px;
+
+}
+
+.search-section .container{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.search-section input,
+.search-section select{
+
+    height:46px;
+
+    font-size:14px;
+
+}
+
+/* =======================
+SECTION TITLE
+======================= */
+
+.section-title{
+
+    font-size:1.5rem;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+
+}
+
+/* =======================
+STATS
+======================= */
+
+.stat-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.stat-card h2{
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    font-size:2rem;
+
+}
+
+.stat-card p{
+
+    color:var(--muted);
+
+    margin-top:10px;
+
+}
+
+/* =======================
+GRANT CARD
+======================= */
+
+.grant-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+    height:100%;
+
+}
+
+.grant-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.grant-body{
+
+    padding:18px;
+
+}
+
+.agency{
+
+    color:var(--primary);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    margin-bottom:10px;
+
+}
+
+.scheme{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+.meta{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    margin-bottom:6px;
+
+}
+
+.badge-days{
+
+    padding:7px 12px;
+
+    border-radius:25px;
+
+    font-size:.80rem;
+
+    font-weight:600;
+
+}
+
+/* =======================
+BUTTONS
+======================= */
+
+.btn{
+
+    border-radius:8px;
+
+    font-size:14px;
+
+    padding:8px 16px;
+
+}
+
+
+.btn-notification{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.btn-notification:hover{
+
+    background:#084298;
+
+    color:white;
+
+}
+
+.btn-apply{
+
+    background:var(--secondary);
+
+    color:white;
+
+}
+
+.btn-apply:hover{
+
+    background:#146c43;
+
+    color:white;
+
+}
+
+/* =======================
+FEATURED
+======================= */
+
+.featured{
+
+    border-left:6px solid gold;
+
+}
+
+/* =======================
+LOADING
+======================= */
+
+.loading{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.9);
+
+    z-index:9999;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+}
+
+/* =======================
+FOOTER
+======================= */
+
+
+
+footer{
+
+    background:#0b3d91;
+
+    color:white;
+
+    padding:20px;
+
+    font-size:14px;
+
+    text-align:center;
+
+    margin-top:50px;
+
+}
+
+/* =======================
+RESPONSIVE
+======================= */
+
+@media(max-width:768px){
+
+.hero{
+
+    padding:45px 0;
+
+}
+
+.hero h1{
+
+    font-size:2rem;
+
+}
+
+.section-title{
+
+    font-size:1.25rem;
+
+}
+
+.search-section{
+
+    margin-top:20px;
+
+}
+
+.search-section .container{
+
+    box-shadow:none;
+
+}
+
+}

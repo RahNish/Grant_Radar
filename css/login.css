@@ -1,0 +1,151 @@
+/* =====================================================
+   GRANT RADAR
+   LOGIN.CSS
+===================================================== */
+
+:root{
+
+    --primary:#0d6efd;
+    --secondary:#198754;
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#212529;
+    --radius:18px;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(135deg,#0d6efd,#3b82f6);
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.login-container{
+
+    width:100%;
+    max-width:450px;
+    padding:20px;
+
+}
+
+.login-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    background:white;
+
+    overflow:hidden;
+
+}
+
+.card-body{
+
+    padding:40px;
+
+}
+
+.login-card h2{
+
+    font-weight:700;
+
+    color:#0d6efd;
+
+}
+
+.login-card p{
+
+    color:#6c757d;
+
+    margin-bottom:5px;
+
+}
+
+.form-control{
+
+    border-radius:12px;
+
+    height:50px;
+
+}
+
+.form-control:focus{
+
+    box-shadow:none;
+
+    border-color:#0d6efd;
+
+}
+
+.btn-primary{
+
+    height:50px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+.btn-outline-secondary{
+
+    border-radius:10px;
+
+}
+
+#loginMessage{
+
+    min-height:30px;
+
+    font-weight:500;
+
+    text-align:center;
+
+}
+
+.success{
+
+    color:#198754;
+
+}
+
+.error{
+
+    color:#dc3545;
+
+}
+
+@media(max-width:576px){
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.login-card h2{
+
+    font-size:1.8rem;
+
+}
+
+}

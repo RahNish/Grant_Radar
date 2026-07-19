@@ -1,0 +1,422 @@
+/* =====================================================
+   GRANT RADAR ADMIN
+===================================================== */
+
+:root{
+
+    --primary:#0d6efd;
+    --primary-dark:#0b5ed7;
+    --success:#198754;
+    --warning:#ffc107;
+    --danger:#dc3545;
+
+    --background:#f5f7fb;
+    --card:#ffffff;
+    --border:#e5e7eb;
+
+    --text:#212529;
+    --muted:#6c757d;
+
+    --radius:16px;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+}
+
+/* =======================
+NAVBAR
+======================= */
+
+.navbar{
+
+    padding:15px 25px;
+
+}
+
+.navbar h4{
+
+    font-weight:600;
+
+}
+
+/* =======================
+CARDS
+======================= */
+
+.dashboard-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+    height:100%;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.dashboard-card h2{
+
+    font-size:1.8rem;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+}
+
+.dashboard-card p{
+
+    margin-top:12px;
+
+    color:var(--muted);
+
+    font-weight:500;
+
+}
+
+/* =======================
+BOOTSTRAP CARDS
+======================= */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.card-header{
+
+    background:white;
+
+    border-bottom:1px solid #eee;
+
+    font-weight:600;
+
+    padding:18px 25px;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+/* =======================
+FORM
+======================= */
+
+.form-label{
+
+    font-weight:600;
+
+    margin-bottom:6px;
+
+}
+
+.form-control,
+
+.form-select{
+
+    height:48px;
+
+    border-radius:10px;
+
+}
+
+textarea.form-control{
+
+    height:auto;
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+    box-shadow:none;
+
+    border-color:var(--primary);
+
+}
+
+/* =======================
+BUTTONS
+======================= */
+
+.btn{
+
+    border-radius:10px;
+
+    padding:10px 18px;
+
+    font-weight:500;
+
+}
+
+/* =======================
+TABLE
+======================= */
+
+.table{
+
+    vertical-align:middle;
+
+    font-size:14px;
+
+}
+
+.table thead{
+
+    font-weight:600;
+
+}
+
+.table tbody tr{
+
+    transition:.2s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#f8f9fa;
+
+}
+
+/* =======================
+STATUS BADGES
+======================= */
+
+.status-active{
+
+    background:#198754;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.status-expired{
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.status-featured{
+
+    background:#ffc107;
+
+    color:black;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+/* =======================
+ACTION BUTTONS
+======================= */
+
+.action-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-right:6px;
+
+}
+
+.edit-btn{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+
+.edit-btn:hover{
+
+    background:#0b5ed7;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+    color:white;
+
+}
+
+.delete-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* =======================
+MODAL
+======================= */
+
+.modal-content{
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+.modal-header{
+
+    border-bottom:1px solid #eee;
+
+}
+
+.modal-footer{
+
+    border-top:1px solid #eee;
+
+}
+
+/* =======================
+FOOTER
+======================= */
+
+footer{
+
+    color:#6c757d;
+
+    font-size:14px;
+
+}
+
+/* =======================
+LOADING
+======================= */
+
+.loading{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+/* =======================
+RESPONSIVE
+======================= */
+
+@media(max-width:992px){
+
+.dashboard-card{
+
+    margin-bottom:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.card-body{
+
+    padding:18px;
+
+}
+
+.dashboard-card{
+
+    padding:20px;
+
+}
+
+.dashboard-card h2{
+
+    font-size:1.8rem;
+
+}
+
+.table{
+
+    font-size:14px;
+
+}
+
+.navbar h4{
+
+    font-size:18px;
+
+}
+
+}
+
+
+/* Keep Grant ID on one line */
+#grantTable td:first-child{
+
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 14px;
+
+}
