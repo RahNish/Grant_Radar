@@ -81,7 +81,7 @@ HERO
 
     color:white;
 
-    padding:35px 0;
+    padding:20px 0 30px;
 
 }
 .hero .container{
@@ -124,7 +124,7 @@ SEARCH
 
 .search-section{
 
-    margin-top:-35px;
+    margin-top:-20px;
 
 }
 
@@ -167,13 +167,22 @@ SECTION TITLE
 STATS
 ======================= */
 
+
 .stat-card{
 
     background:white;
 
     border-radius:16px;
 
-    padding:20px;
+    padding:8px 16px;
+
+    min-height:90px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
 
     text-align:center;
 
@@ -189,13 +198,16 @@ STATS
 
 }
 
+
 .stat-card h2{
 
     color:var(--primary);
 
     font-weight:700;
 
-    font-size:2rem;
+    font-size:1.6rem;
+
+    margin-bottom:4px;
 
 }
 
@@ -203,7 +215,11 @@ STATS
 
     color:var(--muted);
 
-    margin-top:10px;
+    margin-top:0px;
+
+    margin-bottom:0;
+
+    font-size:0.95rem;
 
 }
 
