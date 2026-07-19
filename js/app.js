@@ -207,7 +207,7 @@ function applyFilters() {
 
     });
 
-    renderFeatured();
+    // renderFeatured();
     renderGrants();
 
 }
@@ -227,34 +227,34 @@ function showLoading(show) {
 /******************************************************
  * RENDER FEATURED GRANTS
  ******************************************************/
-function renderFeatured() {
+// function renderFeatured() {
 
-    const container = document.getElementById("featuredContainer");
+//     const container = document.getElementById("featuredContainer");
 
-    container.innerHTML = "";
+//     container.innerHTML = "";
 
-    const featured = filteredGrants.filter(g => g.featured === "Yes");
+//     const featured = filteredGrants.filter(g => g.featured === "Yes");
 
-    if (featured.length === 0) {
+//     if (featured.length === 0) {
 
-        container.innerHTML = `
-            <div class="col-12">
-                <div class="alert alert-light border">
-                    No featured funding opportunities available.
-                </div>
-            </div>
-        `;
+//         container.innerHTML = `
+//             <div class="col-12">
+//                 <div class="alert alert-light border">
+//                     No featured funding opportunities available.
+//                 </div>
+//             </div>
+//         `;
 
-        return;
-    }
+//         return;
+//     }
 
-    featured.forEach(grant => {
+//     featured.forEach(grant => {
 
-        container.innerHTML += createGrantCard(grant, true);
+//         container.innerHTML += createGrantCard(grant, true);
 
-    });
+//     });
 
-}
+// }
 
 /******************************************************
  * RENDER ALL GRANTS
@@ -278,14 +278,22 @@ function renderGrants() {
         return;
     }
 
-    filteredGrants.forEach(grant => {
+    // Featured grants first
+    const sortedGrants = [...filteredGrants].sort((a, b) => {
+
+        if (a.featured === "Yes" && b.featured !== "Yes") return -1;
+        if (a.featured !== "Yes" && b.featured === "Yes") return 1;
+        return 0;
+
+    });
+
+    sortedGrants.forEach(grant => {
 
         container.innerHTML += createGrantCard(grant, false);
 
     });
 
 }
-
 /******************************************************
  * CREATE CARD
  ******************************************************/
@@ -324,7 +332,11 @@ function createGrantCard(grant, featured = false) {
 
 ${grant.agency}
 
-${featured ? '<span class="badge bg-warning text-dark ms-2">Featured</span>' : ''}
+// ${featured ? '<span class="badge bg-warning text-dark ms-2">Featured</span>' : ''}
+
+${grant.featured === "Yes"
+    ? '<span class="badge bg-warning text-dark ms-2"><i class="bi bi-star-fill"></i> Featured</span>'
+    : ''}
 
 </div>
 
