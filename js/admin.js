@@ -67,34 +67,76 @@ function attachEvents(){
         .addEventListener("keyup",searchGrant);
 
     document
-        .getElementById("agency")
-        .addEventListener("change",toggleOtherAgency);
+        .getElementById("deadlineType")
+        .addEventListener("change", toggleDeadlineType);
+
+    document
+        .getElementById("importantUpdate")
+        .addEventListener("change", toggleRemark);
+
+    document
+        .getElementById("editDeadlineType")
+        .addEventListener("change", toggleEditDeadlineType);
+
+    document
+        .getElementById("editImportantUpdate")
+        .addEventListener("change", toggleEditRemark);
 
     document
         .getElementById("updateGrantBtn")
         .addEventListener("click",updateGrant);
 
+    toggleDeadlineType();
+
 }
 
 
-/*******************************************************
- * OTHER AGENCY
- *******************************************************/
-function toggleOtherAgency(){
+function toggleDeadlineType(){
 
-    const agency =
-        document.getElementById("agency").value;
+    const type =
+        document.getElementById("deadlineType").value;
 
-    const div =
-        document.getElementById("otherAgencyDiv");
+    const deadlineDiv =
+        document.getElementById("deadlineDiv");
 
-    if(agency==="Other"){
+    const deadline =
+        document.getElementById("deadline");
 
-        div.classList.remove("d-none");
+    if(type === "rolling"){
+
+        deadlineDiv.classList.add("d-none");
+        deadline.required = false;
+        deadline.value = "";
 
     }else{
 
-        div.classList.add("d-none");
+        deadlineDiv.classList.remove("d-none");
+        deadline.required = true;
+
+    }
+
+}
+
+function toggleRemark() {
+
+    const important =
+        document.getElementById("importantUpdate").checked;
+
+    const remarkDiv =
+        document.getElementById("remarkDiv");
+
+    const remark =
+        document.getElementById("remark");
+
+    if (important) {
+
+        remarkDiv.classList.remove("d-none");
+
+    } else {
+
+        remarkDiv.classList.add("d-none");
+
+        remark.value = "";
 
     }
 
@@ -320,41 +362,46 @@ async function saveGrant(e){
 
     e.preventDefault();
 
-    let agency = document.getElementById("agency").value;
+    const agency =
+    document.getElementById("agency")
+    .value
+    .trim();
 
-    if(agency==="Other"){
+    const grant = {
 
-        agency =
-            document.getElementById("otherAgency").value.trim();
+    agency: agency,
 
-    }
+    scheme:
+        document.getElementById("scheme").value.trim(),
 
-    const grant={
+    deadline:
+        document.getElementById("deadline").value,
 
-        agency:agency,
+    deadlineType:
+        document.getElementById("deadlineType").value,
 
-        scheme:
-            document.getElementById("scheme").value.trim(),
+    advertisementLink:
+        document.getElementById("advertisement").value.trim(),
 
-        deadline:
-            document.getElementById("deadline").value,
+    applicationLink:
+        document.getElementById("application").value.trim(),
 
-        advertisementLink:
-            document.getElementById("advertisement").value.trim(),
+    category:
+        document.getElementById("category").value,
 
-        applicationLink:
-            document.getElementById("application").value.trim(),
+    description:
+        document.getElementById("description").value.trim(),
 
-        category:
-            document.getElementById("category").value,
+    importantUpdate:
+        document.getElementById("importantUpdate").checked,
 
-        description:
-            document.getElementById("description").value.trim(),
+    remark:
+        document.getElementById("remark").value.trim(),
 
-        featured:
-            document.getElementById("featured").checked
+    featured:
+        document.getElementById("featured").checked
 
-    };
+};
 
     /* Duplicate Check */
 
@@ -422,6 +469,9 @@ function openEdit(id){
     document.getElementById("editDeadline").value=
         formatDateForInput(currentEdit.deadline);
 
+    document.getElementById("editDeadlineType").value =
+        currentEdit.deadlineType || "fixed";
+
     document.getElementById("editAdvertisement").value=
         currentEdit.advertisementLink || "";
 
@@ -434,8 +484,28 @@ function openEdit(id){
     document.getElementById("editDescription").value=
         currentEdit.description || "";
 
+    document.getElementById("editImportantUpdate").checked =
+        currentEdit.importantUpdate === "Yes" ||
+        currentEdit.importantUpdate === true;
+
+    document.getElementById("editRemark").value =
+        currentEdit.remark || "";
+
     document.getElementById("editFeatured").checked=
         currentEdit.featured==="Yes";
+
+    const remarkDiv =
+        document.getElementById("editRemarkDiv");
+
+    if (document.getElementById("editImportantUpdate").checked) {
+
+        remarkDiv.classList.remove("d-none");
+
+    } else {
+
+        remarkDiv.classList.add("d-none");
+
+    }
 
     new bootstrap.Modal(
         document.getElementById("editModal")
@@ -449,36 +519,45 @@ function openEdit(id){
  *******************************************************/
 async function updateGrant(){
 
-    const grant={
+    const grant = {
 
-        id:
-            document.getElementById("editId").value,
+    id:
+        document.getElementById("editId").value,
 
-        agency:
-            document.getElementById("editAgency").value.trim(),
+    agency:
+        document.getElementById("editAgency").value.trim(),
 
-        scheme:
-            document.getElementById("editScheme").value.trim(),
+    scheme:
+        document.getElementById("editScheme").value.trim(),
 
-        deadline:
-            document.getElementById("editDeadline").value,
+    deadline:
+        document.getElementById("editDeadline").value,
 
-        advertisementLink:
-            document.getElementById("editAdvertisement").value.trim(),
+    deadlineType:
+        document.getElementById("editDeadlineType").value,
 
-        applicationLink:
-            document.getElementById("editApplication").value.trim(),
+    advertisementLink:
+        document.getElementById("editAdvertisement").value.trim(),
 
-        category:
-            document.getElementById("editCategory").value.trim(),
+    applicationLink:
+        document.getElementById("editApplication").value.trim(),
 
-        description:
-            document.getElementById("editDescription").value.trim(),
+    category:
+        document.getElementById("editCategory").value.trim(),
 
-        featured:
-            document.getElementById("editFeatured").checked
+    description:
+        document.getElementById("editDescription").value.trim(),
 
-    };
+    importantUpdate:
+        document.getElementById("editImportantUpdate").checked,
+
+    remark:
+        document.getElementById("editRemark").value.trim(),
+
+    featured:
+        document.getElementById("editFeatured").checked
+
+};
 
     const result = await API.editGrant(grant);
 
@@ -531,5 +610,46 @@ function formatDisplayDate(date){
         month:"short",
         year:"numeric"
     });
+
+}
+
+
+function toggleEditDeadlineType() {
+
+    const type = document.getElementById("editDeadlineType").value;
+
+    const deadlineDiv = document.getElementById("editDeadlineDiv");
+
+    if (type === "rolling") {
+
+        deadlineDiv.classList.add("d-none");
+        document.getElementById("editDeadline").value = "";
+
+    } else {
+
+        deadlineDiv.classList.remove("d-none");
+
+    }
+
+}
+
+function toggleEditRemark() {
+
+    const checked =
+        document.getElementById("editImportantUpdate").checked;
+
+    const remarkDiv =
+        document.getElementById("editRemarkDiv");
+
+    if (checked) {
+
+        remarkDiv.classList.remove("d-none");
+
+    } else {
+
+        remarkDiv.classList.add("d-none");
+        document.getElementById("editRemark").value = "";
+
+    }
 
 }

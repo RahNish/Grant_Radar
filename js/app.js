@@ -48,7 +48,7 @@ async function initialize() {
         // }
 
         populateAgencyFilter();
-        populateCategoryFilter();
+        
 
 
         console.log("About to render...");
@@ -128,31 +128,7 @@ function populateAgencyFilter() {
 
 }
 
-function populateCategoryFilter() {
 
-    const select =
-        document.getElementById("categoryFilter");
-
-    const categories =
-        [...new Set(allGrants.map(g => g.category))];
-
-    categories.sort();
-
-    categories.forEach(c => {
-
-        if (!c) return;
-
-        const option =
-            document.createElement("option");
-
-        option.value = c;
-        option.textContent = c;
-
-        select.appendChild(option);
-
-    });
-
-}
 
 /******************************************************
  * EVENTS
@@ -165,10 +141,6 @@ function attachEvents() {
 
     document
         .getElementById("agencyFilter")
-        .addEventListener("change", applyFilters);
-
-    document
-        .getElementById("categoryFilter")
         .addEventListener("change", applyFilters);
 
 }
@@ -189,39 +161,23 @@ function applyFilters() {
             .getElementById("agencyFilter")
             .value;
 
-    const category =
-        document
-            .getElementById("categoryFilter")
-            .value;
-
     filteredGrants = allGrants.filter(g => {
 
         const matchKeyword =
             g.scheme.toLowerCase().includes(keyword) ||
-
-            g.agency.toLowerCase().includes(keyword) ||
-
-            (g.category || "")
-                .toLowerCase()
-                .includes(keyword);
+            g.agency.toLowerCase().includes(keyword);
 
         const matchAgency =
             agency === "" ||
             g.agency === agency;
 
-        const matchCategory =
-            category === "" ||
-            g.category === category;
-
         return (
             matchKeyword &&
-            matchAgency &&
-            matchCategory
+            matchAgency
         );
 
     });
 
-    // renderFeatured();
     renderGrants();
 
 }
@@ -313,16 +269,32 @@ function renderGrants() {
  ******************************************************/
 function createGrantCard(grant, featured = false) {
 
-    const days = getDaysLeft(grant.deadline);
+
+    const isRolling = grant.deadlineType === "rolling";
+
+    const days = isRolling
+        ? null
+        : getDaysLeft(grant.deadline);
 
     let badge = "bg-success";
-    let text = days + " Days Left";
+    let text = "";
 
-    if (days <= 30)
-        badge = "bg-warning text-dark";
+    if (isRolling) {
 
-    if (days <= 15)
-        badge = "bg-danger";
+        badge = "bg-primary";
+        text = "Open Throughout the Year";
+
+    } else {
+
+        text = days + " Days Left";
+
+        if (days <= 30)
+            badge = "bg-warning text-dark";
+
+        if (days <= 15)
+            badge = "bg-danger";
+
+}
 
     const notificationLink =
         grant.advertisementLink || "#";
@@ -360,25 +332,35 @@ ${grant.scheme}
 
 </div>
 
+${grant.importantUpdate === "Yes" || grant.importantUpdate === true ? `
+
+<div class="alert alert-warning py-2 mt-3 mb-2">
+
+<strong>
+
+📢 Important Update
+
+</strong>
+
+<br>
+
+${grant.remark || ""}
+
+</div>
+
+` : ""}
+
 <div class="meta">
 
 <i class="bi bi-calendar-event"></i>
 
 <strong>Deadline:</strong>
 
-${formatDate(grant.deadline)}
+${isRolling ? "Open Throughout the Year" : formatDate(grant.deadline)}
 
 </div>
 
-<div class="meta">
 
-<i class="bi bi-tag"></i>
-
-<strong>Category:</strong>
-
-${grant.category || "-"}
-
-</div>
 
 <div class="mt-3">
 

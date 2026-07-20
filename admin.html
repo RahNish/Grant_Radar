@@ -180,99 +180,53 @@ id="grantForm">
 
 <div class="col-md-4">
 
-<label class="form-label">
+    <label class="form-label">
+        Funding Agency
+    </label>
 
-Funding Agency
-
-</label>
-
-<select
-
-id="agency"
-
-class="form-select"
-
-required>
-
-<option value="">
-
-Select Agency
-
-</option>
-
-<option>DST</option>
-
-<option>DBT</option>
-
-<option>ANRF</option>
-
-<option>ICMR</option>
-
-<option>CSIR</option>
-
-<option>ISRO</option>
-
-<option>BIRAC</option>
-
-<option>AICTE</option>
-
-<option>UGC</option>
-
-<option>VGST</option>
-
-<option>DRDO</option>
-
-<option>MoES</option>
-
-<option>MoEFCC</option>
-
-<option>Other</option>
-
-</select>
+    <input
+        type="text"
+        id="agency"
+        class="form-control"
+        placeholder="Enter Funding Agency"
+        required>
 
 </div>
 
-<!-- Other Agency -->
+<!-- Deadline Type -->
 
-<div
-class="col-md-4 d-none"
-id="otherAgencyDiv">
+<div class="col-md-2">
 
-<label class="form-label">
+    <label class="form-label">
+        Deadline Type
+    </label>
 
-Other Agency
+    <select
+        id="deadlineType"
+        class="form-select">
 
-</label>
+        <option value="fixed">Fixed Date</option>
+        <option value="rolling">Open Throughout the Year</option>
 
-<input
-
-type="text"
-
-id="otherAgency"
-
-class="form-control">
+    </select>
 
 </div>
 
 <!-- Deadline -->
 
-<div class="col-md-4">
+<div
+class="col-md-4"
+id="deadlineDiv">
 
-<label class="form-label">
+    <label class="form-label">
+        Deadline
+    </label>
 
-Deadline
-
-</label>
-
-<input
-
-type="date"
-
-id="deadline"
-
-class="form-control"
-
-required>
+    <input
+        type="date"
+        id="deadline"
+        class="form-control"
+        required>
 
 </div>
 
@@ -468,6 +422,50 @@ rows="4"
 class="form-control">
 
 </textarea>
+
+</div>
+
+
+<!-- Important Update -->
+
+<div class="col-md-3">
+
+    <div class="form-check mt-4">
+
+        <input
+            class="form-check-input"
+            type="checkbox"
+            id="importantUpdate">
+
+        <label
+            class="form-check-label"
+            for="importantUpdate">
+
+            Important Update
+
+        </label>
+
+    </div>
+
+</div>
+
+<!-- Remark -->
+
+<div
+    class="col-md-9 d-none"
+    id="remarkDiv">
+
+    <label class="form-label">
+
+        Remark
+
+    </label>
+
+    <input
+        type="text"
+        id="remark"
+        class="form-control"
+        placeholder="Example: Deadline Extended till 31 Aug 2026">
 
 </div>
 
@@ -670,7 +668,32 @@ class="form-control">
 
 </div>
 
+<!-- Edit Deadline Type -->
+
 <div class="col-md-4">
+
+<label>
+
+Deadline Type
+
+</label>
+
+<select
+id="editDeadlineType"
+class="form-select">
+
+    <option value="fixed">Fixed Date</option>
+    <option value="rolling">Open Throughout the Year</option>
+
+</select>
+
+</div>
+
+<!-- Edit Deadline -->
+
+<div
+class="col-md-4"
+id="editDeadlineDiv">
 
 <label>
 
@@ -679,11 +702,8 @@ Deadline
 </label>
 
 <input
-
 type="date"
-
 id="editDeadline"
-
 class="form-control">
 
 </div>
@@ -781,6 +801,49 @@ rows="5"
 class="form-control">
 
 </textarea>
+
+</div>
+
+<!-- Edit Important Update -->
+
+<div class="col-md-3">
+
+<div class="form-check mt-4">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="editImportantUpdate">
+
+<label
+class="form-check-label"
+for="editImportantUpdate">
+
+Important Update
+
+</label>
+
+</div>
+
+</div>
+
+<!-- Edit Remark -->
+
+<div
+class="col-md-9 d-none"
+id="editRemarkDiv">
+
+<label>
+
+Remark
+
+</label>
+
+<input
+type="text"
+id="editRemark"
+class="form-control"
+placeholder="Enter remark">
 
 </div>
 
